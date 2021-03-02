@@ -1,0 +1,1 @@
+﻿get-process terragrunt -ErrorAction Ignore | Stop-Process
