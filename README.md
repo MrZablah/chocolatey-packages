@@ -9,7 +9,7 @@ This package is base on [DrFaust92](https://github.com/DrFaust92/chocolatey-pack
 
 
 ## Terragrunt
-The current version is 0.30.7, install it using choco:
+Install it using choco:
 ```
 choco install terragruntt
 ```

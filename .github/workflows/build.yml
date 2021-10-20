@@ -1,0 +1,27 @@
+name: Build
+
+on:
+  pull_request:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+  terragruntt:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v2.3.5
+
+      - name: Choco pack
+        uses: crazy-max/ghaction-chocolatey@v1.6.0
+        with:
+          args: pack .\terragruntt\terragruntt.nuspec
+
+      - name: Choco install
+        uses: crazy-max/ghaction-chocolatey@v1.6.0
+        with:
+          args: install -source . -force terragruntt
+
+      - name: Terraform Version
+        run: terragrunt -version

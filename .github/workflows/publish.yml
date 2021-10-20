@@ -1,0 +1,63 @@
+name: Publish
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build-terragruntt:
+    runs-on: windows-latest
+
+    steps:
+      - uses: actions/checkout@v2.3.5
+
+      - name: Choco pack
+        uses: crazy-max/ghaction-chocolatey@v1.6.0
+        with:
+          args: pack .\terragruntt\terragruntt.nuspec
+
+      - name: Choco install
+        uses: crazy-max/ghaction-chocolatey@v1.6.0
+        with:
+          args: install -source . -force terragruntt
+
+      - name: Terraform Version
+        run: terragruntt -version
+
+      - name: Save Choco package
+        uses: actions/upload-artifact@v2
+        with:
+          name: terragruntt
+          path: "${{ github.workspace }}/*.nupkg"
+
+  publish-terragruntt:
+    runs-on: windows-latest
+
+    needs: build-terragruntt
+
+    steps:
+      - uses: actions/checkout@v2.3.5
+
+      - name: Restore Choco package
+        uses: actions/download-artifact@v2
+        with:
+          name: terragruntt
+          path: ${{ github.workspace }}
+
+      - name: Choco install
+        uses: crazy-max/ghaction-chocolatey@v1.6.0
+        with:
+          args: install -source . -force terragruntt
+
+      - name: Terraform Version
+        run: terragruntt -version
+
+      - name: Add Choco API Key
+        uses: crazy-max/ghaction-chocolatey@v1.6.0
+        with:
+          args: apikey --key ${{secrets.CHOCO_API_KEY}} --source https://push.chocolatey.org/
+
+      - name: Publish (noop)
+        uses: crazy-max/ghaction-chocolatey@v1.6.0
+        with:
+          args: push
