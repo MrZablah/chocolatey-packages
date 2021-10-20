@@ -27,7 +27,7 @@ jobs:
           args: install -source . -force terragruntt
 
       - name: Terraform Version
-        run: terragruntt -version
+        run: terragrunt -version
 
       - name: Save Choco package
         uses: actions/upload-artifact@v2
@@ -60,7 +60,7 @@ jobs:
           args: install -source . -force terragruntt
 
       - name: Terraform Version
-        run: terragruntt -version
+        run: terragrunt -version
 
       - name: Add Choco API Key
         uses: crazy-max/ghaction-chocolatey@v1.6.0
