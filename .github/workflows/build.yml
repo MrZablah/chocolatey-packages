@@ -21,12 +21,12 @@ jobs:
       - name: Choco pack
         uses: crazy-max/ghaction-chocolatey@v1.6.0
         with:
-          args: pack .\terragruntt\terragruntt.nuspec
+          args: pack .\terragrunt\terragrunt.nuspec
 
       - name: Choco install
         uses: crazy-max/ghaction-chocolatey@v1.6.0
         with:
-          args: install -source . -force terragruntt
+          args: install -source . -force terragrunt
 
       - name: Terraform Version
         run: terragrunt -version
