@@ -5,7 +5,7 @@ on:
     branches: [ main ]
 
 jobs:
-  build-terragruntt:
+  build-terragrunt:
     runs-on: windows-latest
 
     steps:
@@ -19,12 +19,12 @@ jobs:
       - name: Choco pack
         uses: crazy-max/ghaction-chocolatey@v1.6.0
         with:
-          args: pack .\terragruntt\terragruntt.nuspec
+          args: pack .\terragrunt\terragrunt.nuspec
 
       - name: Choco install
         uses: crazy-max/ghaction-chocolatey@v1.6.0
         with:
-          args: install -source . -force terragruntt
+          args: install -source . -force terragrunt
 
       - name: Terraform Version
         run: terragrunt -version
@@ -32,13 +32,13 @@ jobs:
       - name: Save Choco package
         uses: actions/upload-artifact@v2
         with:
-          name: terragruntt
+          name: terragrunt
           path: "${{ github.workspace }}/*.nupkg"
 
-  publish-terragruntt:
+  publish-terragrunt:
     runs-on: windows-latest
 
-    needs: build-terragruntt
+    needs: build-terragrunt
 
     steps:
       - uses: actions/checkout@v2.3.5
@@ -51,13 +51,13 @@ jobs:
       - name: Restore Choco package
         uses: actions/download-artifact@v2
         with:
-          name: terragruntt
+          name: terragrunt
           path: ${{ github.workspace }}
 
       - name: Choco install
         uses: crazy-max/ghaction-chocolatey@v1.6.0
         with:
-          args: install -source . -force terragruntt
+          args: install -source . -force terragrunt
 
       - name: Terraform Version
         run: terragrunt -version
