@@ -11,7 +11,7 @@ This package is base on [DrFaust92](https://github.com/DrFaust92/chocolatey-pack
 ## Terragrunt
 Install it using choco:
 ```
-choco install terragruntt
+choco install terragrunt
 ```
 
 # Calculating SHA256
