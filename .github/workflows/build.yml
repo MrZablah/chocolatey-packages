@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  terragruntt:
+  terragrunt:
     runs-on: windows-latest
 
     steps:
