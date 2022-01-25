@@ -28,5 +28,7 @@ jobs:
         with:
           args: install -source . -force terragrunt
 
-      - name: Terraform Version
-        run: terragrunt -version
+      - name: Terragrunt & Terraform Version
+        run: |
+          terragrunt -version
+          terraform -version
