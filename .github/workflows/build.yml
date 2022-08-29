@@ -11,7 +11,7 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v2.3.5
+      - uses: actions/checkout@v3
 
       - name: Choco install Terraform
         uses: crazy-max/ghaction-chocolatey@v1.6.0

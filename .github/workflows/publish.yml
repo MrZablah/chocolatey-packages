@@ -9,20 +9,20 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v2.3.5
+      - uses: actions/checkout@v3
 
       - name: Choco install Terraform
-        uses: crazy-max/ghaction-chocolatey@v1.6.0
+        uses: crazy-max/ghaction-chocolatey@v2.0.0
         with:
           args: install terraform
 
       - name: Choco pack
-        uses: crazy-max/ghaction-chocolatey@v1.6.0
+        uses: crazy-max/ghaction-chocolatey@v2.0.0
         with:
           args: pack .\terragrunt\terragrunt.nuspec
 
       - name: Choco install
-        uses: crazy-max/ghaction-chocolatey@v1.6.0
+        uses: crazy-max/ghaction-chocolatey@v2.0.0
         with:
           args: install -source . -force terragrunt
 
@@ -43,10 +43,10 @@ jobs:
     needs: build-terragrunt
 
     steps:
-      - uses: actions/checkout@v2.3.5
+      - uses: actions/checkout@v3
 
       - name: Choco install Terraform
-        uses: crazy-max/ghaction-chocolatey@v1.6.0
+        uses: crazy-max/ghaction-chocolatey@v2.0.0
         with:
           args: install terraform
 
@@ -57,7 +57,7 @@ jobs:
           path: ${{ github.workspace }}
 
       - name: Choco install
-        uses: crazy-max/ghaction-chocolatey@v1.6.0
+        uses: crazy-max/ghaction-chocolatey@v2.0.0
         with:
           args: install -source . -force terragrunt
 
@@ -67,11 +67,11 @@ jobs:
           terraform -version
 
       - name: Add Choco API Key
-        uses: crazy-max/ghaction-chocolatey@v1.6.0
+        uses: crazy-max/ghaction-chocolatey@v2.0.0
         with:
           args: apikey --key ${{secrets.CHOCO_API_KEY}} --source https://push.chocolatey.org/
 
       - name: Publish (noop)
-        uses: crazy-max/ghaction-chocolatey@v1.6.0
+        uses: crazy-max/ghaction-chocolatey@v2.0.0
         with:
           args: push
