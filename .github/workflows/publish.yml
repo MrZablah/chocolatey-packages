@@ -11,6 +11,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Choco install Terraform
+        uses: crazy-max/ghaction-chocolatey@v2
+        with:
+          args: install terraform
+
       - name: Choco pack
         uses: crazy-max/ghaction-chocolatey@v2.0.0
         with:
@@ -19,7 +24,7 @@ jobs:
       - name: Choco install
         uses: crazy-max/ghaction-chocolatey@v2.0.0
         with:
-          args: install -source . -force --force-dependencies terragrunt
+          args: install -source . -force terragrunt
 
       - name: Terragrunt & Terraform Version
         run: |
@@ -45,6 +50,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
+      - name: Choco install Terraform
+        uses: crazy-max/ghaction-chocolatey@v2
+        with:
+          args: install terraform
+
       - name: Restore Choco package
         uses: actions/download-artifact@v3
         with:
@@ -54,7 +64,7 @@ jobs:
       - name: Choco install
         uses: crazy-max/ghaction-chocolatey@v2.0.0
         with:
-          args: install -source . -force --force-dependencies terragrunt
+          args: install -source . -force terragrunt
 
       - name: Terragrunt & Terraform Version
         run: |
