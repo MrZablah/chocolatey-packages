@@ -21,7 +21,7 @@ jobs:
       - name: Choco install
         uses: crazy-max/ghaction-chocolatey@v2.0.0
         with:
-          args: install -source . -force terragrunt
+          args: install -source . -force --force-dependencies terragrunt
 
       - name: Terragrunt & Terraform Version
         run: |
