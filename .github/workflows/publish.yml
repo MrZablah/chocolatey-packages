@@ -11,11 +11,6 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Choco install Terraform
-        uses: crazy-max/ghaction-chocolatey@v2.0.0
-        with:
-          args: install terraform
-
       - name: Choco pack
         uses: crazy-max/ghaction-chocolatey@v2.0.0
         with:
@@ -32,10 +27,15 @@ jobs:
           terraform -version
 
       - name: Save Choco package
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v3
         with:
           name: terragrunt
           path: "${{ github.workspace }}/*.nupkg"
+      
+      - name: Choco uninstall
+        uses: crazy-max/ghaction-chocolatey@v2.0.0
+        with:
+          args: uninstall --force --confirm terragrunt
 
   publish-terragrunt:
     runs-on: windows-latest
@@ -45,19 +45,14 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Choco install Terraform
-        uses: crazy-max/ghaction-chocolatey@v2
-        with:
-          args: install terraform
-
       - name: Restore Choco package
-        uses: actions/download-artifact@v2
+        uses: actions/download-artifact@v3
         with:
           name: terragrunt
           path: ${{ github.workspace }}
 
       - name: Choco install
-        uses: crazy-max/ghaction-chocolatey@v2
+        uses: crazy-max/ghaction-chocolatey@v2.0.0
         with:
           args: install -source . -force terragrunt
 

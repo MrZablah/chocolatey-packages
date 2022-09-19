@@ -13,18 +13,13 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: Choco install Terraform
-        uses: crazy-max/ghaction-chocolatey@v2
-        with:
-          args: install terraform
-
       - name: Choco pack
-        uses: crazy-max/ghaction-chocolatey@v2
+        uses: crazy-max/ghaction-chocolatey@v2.0.0
         with:
           args: pack .\terragrunt\terragrunt.nuspec
 
       - name: Choco install
-        uses: crazy-max/ghaction-chocolatey@v2
+        uses: crazy-max/ghaction-chocolatey@v2.0.0
         with:
           args: install -source . -force terragrunt
 
@@ -32,3 +27,8 @@ jobs:
         run: |
           terragrunt -version
           terraform -version
+
+      - name: Choco uninstall
+        uses: crazy-max/ghaction-chocolatey@v2.0.0
+        with:
+          args: uninstall --force --confirm terragrunt
