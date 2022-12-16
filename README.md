@@ -14,6 +14,9 @@ Install it using choco:
 choco install terragrunt
 ```
 
+## Terragruntt
+was a work arround to update Terragrunt on chocolaty but synce I can update terraform know Terragruntt is not longer being mantaine.
+
 # Calculating SHA256
 
 Calculating SHA256 for packages where not applicable
