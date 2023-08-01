@@ -52,7 +52,7 @@ jobs:
           path: ${{ github.workspace }}
 
       - name: Choco install
-        uses: crazy-max/ghaction-chocolatey@v2.0.0
+        uses: crazy-max/ghaction-chocolatey@v2
         with:
           args: install -source . -force terragrunt
 
