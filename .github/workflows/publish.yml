@@ -22,7 +22,7 @@ jobs:
         with:
           args: install -source . -force terragrunt
 
-      - name: Terragrunt & Terraform Version
+      - name: Terragrunt
         run: |
           terragrunt -version
 
@@ -56,7 +56,7 @@ jobs:
         with:
           args: install -source . -force terragrunt
 
-      - name: Terragrunt & Terraform Version
+      - name: Terragrunt
         run: |
           terragrunt -version
 
