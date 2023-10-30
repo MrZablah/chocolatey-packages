@@ -2,8 +2,8 @@ $ErrorActionPreference = 'Stop'
 
 $packageName = 'terragrunt'
 $toolsPath = Split-Path $MyInvocation.MyCommand.Definition
-$checksum = '99a1ae467b228927c77f2a2f5dd843aecdb84b732d8c36e1dc45f5f9500914b5'
-$url = 'https://github.com/gruntwork-io/terragrunt/releases/download/v0.52.3/terragrunt_windows_amd64.exe'
+$checksum = '5cd2967442502678e85495aa38a6c510fbfb272236abee1e256da4cd140d2d25'
+$url = 'https://github.com/gruntwork-io/terragrunt/releases/download/v0.52.4/terragrunt_windows_amd64.exe'
 $destination = "$toolsPath\terragrunt.exe"
 
 Get-ChocolateyWebFile -PackageName $packageName -FileFullPath $destination -Url64bit $url -Checksum64 $checksum -ChecksumType64 sha256
