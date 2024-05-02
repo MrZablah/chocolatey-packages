@@ -10,15 +10,15 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
 
       - name: Choco pack
-        uses: crazy-max/ghaction-chocolatey@v2.0.0
+        uses: crazy-max/ghaction-chocolatey@v3
         with:
           args: pack .\terragrunt\terragrunt.nuspec
 
       - name: Choco install
-        uses: crazy-max/ghaction-chocolatey@v2.0.0
+        uses: crazy-max/ghaction-chocolatey@v3
         with:
           args: install -source . -force terragrunt
 
@@ -27,13 +27,13 @@ jobs:
           terragrunt -version
 
       - name: Save Choco package
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: terragrunt
           path: "${{ github.workspace }}/*.nupkg"
       
       - name: Choco uninstall
-        uses: crazy-max/ghaction-chocolatey@v2.0.0
+        uses: crazy-max/ghaction-chocolatey@v3
         with:
           args: uninstall --force --confirm terragrunt
 
